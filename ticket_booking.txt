@@ -1,0 +1,30 @@
+import mysql.connector
+
+mydb=mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="@mysql#aab2426",
+    database="python_batch54"
+)
+mycursor=mydb.cursor()
+def insert_data(user_name,seat_nums,travels_name,places_name):
+    mycursor=mydb.cursor()
+    sql="insert into ticket_booking(user_name,seat_nums,travels_name,places_name) values (%s,%s,%s,%s)"
+    val=(user_name,seat_nums,travels_name,Places_name)
+    mycursor.execute(sql,val)
+    mydb.commit()
+    print("data inserted successfully")
+def view_data():
+  mycursor.execute("select*from ticket_booking")
+  result=mycursor.fetchall()
+  for i in result:
+   print(i)
+user= int(input("enter your number:"))
+if user==1:
+  user_name=input("enter your name:")
+  seat_nums=int(input("how many members:"))
+  travels_name=input("enter your travel name:")
+  place=input("enter your place:")
+  insert_data(user_name,seat_nums,travels_name,places_name)
+elif user==2:
+  view_data()

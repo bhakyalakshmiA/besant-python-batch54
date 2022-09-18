@@ -1,0 +1,24 @@
+import mysql.connector
+
+mydb=mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="@mysql#aab2426",
+    database="python_batch54"
+)
+mycursor=mydb.cursor()
+sql="insert into atm_machine (acc_holder,acc_balance,enter_pin,withdraw_amount,new_balance) values (%s,%s,%s,%s,%s)1"
+val=("bhakya",750000,1234,7500,742500)
+val=("arun",240000,2426,2500,237500)
+val=("aravind",240000,9874,8500,231500)
+mycursor.execute(sql,val)
+mydb.commit()
+print("data inserted successfully")
+def view_data():
+   mycursor.execute("select * from atm_machine")
+result=mycursor.fetchall()
+for i in result:
+  print(i)
+user=int(input("enter your number:"))
+if user==1:
+  view_data()
